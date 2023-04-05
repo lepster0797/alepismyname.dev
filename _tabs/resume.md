@@ -51,6 +51,9 @@ Experience
 Technical Experience
 --------------------
 
+Linux
+:   Proficient in the use of Linux as my daily driver operating system ; Nobara Linux 
+
 Homelab
 :   A homelab server running Proxmox VE to learn about virtualization and self-hosting my own set of services
 
