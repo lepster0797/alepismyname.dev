@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  jekyll: 
+    container_name: jekyll-prod
+    build:
+      context: /home/alep/alepismyname.dev/. 
+      dockerfile: Dockerfile  
+    volumes:
+      - /home/alep/alepismyname.dev:/srv/jekyll
+      - /home/alep/gems:/usr/local/bundle
+    command: jekyll serve --host 0.0.0.0 --watch --force_polling
+    restart: always
+    ports:
+      - "4000:4000"
+    dns: 
+      - 8.8.8.8
+      - 1.1.1.1
+  
+  nginx:
+    container_name: nginx-prod 
+    image: nginx:latest
+    volumes:
+#      - /etc/nginx:/etc/nginx/conf.d
+      - /home/alep/alepismyname.dev/_site:/usr/share/nginx/html
+    ports:
+      - "8080:80"
+      - "443:443"
+    restart: always
+    depends_on:
+      - jekyll
+    dns: 
+      - 8.8.8.8
+      - 1.1.1.1
+
+
